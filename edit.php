@@ -41,6 +41,7 @@
 				
 				//$recipient = $_GET["to"];
 				//$message = $_GET["message"];
+				//$id = $_GET["edit"];
 				
 				
 				
