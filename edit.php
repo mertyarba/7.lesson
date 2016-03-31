@@ -16,7 +16,30 @@
 		//ask for latest data for a single row
 		$mysql = new mysqli("localhost", $db_username, $db_password, "webpr2016_mertyarba");
 		
-		$stmt = $mysql->prepare("SELECT id, recipient, message FROM messages_sample WHERE id=?");
+		//maybe user wants to save data after clicking the button
+		if(isset($_GET["to"]) && isset($_GET["message"])){
+			
+			echo "User modified data, tries to save ";
+			
+			//should be validation
+			
+			$stmt = $mysql->prepare("UPDATE messages_sample SET recipient=?, message=? WHERE id=?");
+			
+			echo $mysql->error;
+			
+			$stmt->bind_param("ssi", $_GET["to"], $_GET["message"], $_GET["edit"]);
+			
+			if ($stmt->execute()){
+				
+				echo "saved successfully";
+				
+			}else{
+				echo $stmt->error;
+			}
+			
+		}else{
+			
+			$stmt = $mysql->prepare("SELECT id, recipient, message FROM messages_sample WHERE id=?");
 		
 		echo $mysql->error;
 		
@@ -37,6 +60,10 @@
 			echo $stmt->error;
 		}
 		
+			
+		}
+		
+	
 	}
 	
 	
@@ -48,7 +75,7 @@
 
 <form method="get">
 	
-	<input name="edit" value="<?=$id;?>"><br><br>
+	<input hidden name="edit" value="<?=$id;?>"><br><br>
 	
 	<label for="to">to:* <label>
 	<input type="text" name="to" value="<?php echo $recipient; ?>"><br><br>
