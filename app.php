@@ -2,7 +2,7 @@
 
 	// require another php file
 	// ../../../ => 3 folders back
-	require_once("../../../config.php");
+	require_once("../../config.php");
 
 	$everything_was_okay = true;
 
@@ -61,7 +61,7 @@
 		// 2 username
 		// 3 password
 		// 4 database
-		$mysql = new mysqli("localhost", $db_username, $db_password, "webpr2016_romil");
+		$mysql = new mysqli("localhost", $db_username, $db_password, "webpr2016_mertyarba");
 		
 		$stmt = $mysql->prepare("INSERT INTO messages_sample (recipient, message) VALUES (?,?)");
 			
