@@ -33,6 +33,17 @@
 				
 				echo "saved successfully";
 				
+				//option one - redirect
+				header ("Location: table.php");
+				exit();
+				
+				//option two - update variables
+				
+				//$recipient = $_GET["to"];
+				//$message = $_GET["message"];
+				
+				
+				
 			}else{
 				echo $stmt->error;
 			}
